@@ -1,11 +1,36 @@
 import torch
-
+import math
 num_diffusion_steps=100
+s=0.008
+# betas=torch.linspace(
+#     0.0001,
+#     0.02,
+#     num_diffusion_steps
+# )
 
-betas=torch.linspace(
-    0.0001,
-    0.02,
-    num_diffusion_steps
+steps=torch.linspace(
+    0,
+    num_diffusion_steps,
+    num_diffusion_steps+1
+)
+f = torch.cos(
+    (
+        steps / num_diffusion_steps + s
+    )
+    /
+    (1 + s)
+    *
+    math.pi / 2
+) ** 2
+alpha_bars_full = f / f[0]
+betas = 1 - (
+    alpha_bars_full[1:]
+    /
+    alpha_bars_full[:-1]
+)
+betas = torch.clamp(
+    betas,
+    max=0.999
 )
 alphas=1-betas
 alpha_bars=torch.cumprod(

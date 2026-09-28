@@ -4,6 +4,12 @@ from model import DiffusionPolicyModel
 from inference import sample_action
 from noise_scheduler import alpha_bars
 from dataset import ChunkDataset
+from noise_scheduler import add_noise
+from noise_scheduler import (
+    betas,
+    alphas,
+    alpha_bars
+)
 
 
 device = torch.device(
@@ -39,18 +45,26 @@ loader = torch.utils.data.DataLoader(
 
 obs, target_action = next(iter(loader))
 obs = obs.to(device)
+betas=betas.to(device)
+alphas=alphas.to(device)
+alpha_bars=alpha_bars
 target_action = target_action.to(device)
-
 pred_action = sample_action(
-    model,
-    obs,
-    alpha_bars,
+    model=model,
+    obs=obs,
+    betas=betas,
+    alphas=alphas,
+    alpha_bars=alpha_bars,
     action_horizon=4,
     action_dim=2,
-    num_diffusion_steps=100
+    num_diffusion_steps=100,
+    debug=True
 )
+
 mae = torch.mean(
     torch.abs(pred_action - target_action)
 )
 
 print("MAE:", mae.item())
+
+

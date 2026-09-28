@@ -1,2 +1,4 @@
 coding/__pycache__/
 source/diffusion_policy_2023.pdf
+.vscode/
+.codegraph/
