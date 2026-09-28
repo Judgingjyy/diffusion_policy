@@ -90,16 +90,16 @@ def sample_action(
         )
 
         # debug：观察什么时候开始发散
-        if debug and k in [99, 95, 90, 80, 50, 20, 0]:
-            print(
-                f"k = {k:2d} | "
-                f"action abs mean = "
-                f"{action.abs().mean().item():.6f} | "
-                f"pred_noise abs mean = "
-                f"{pred_noise.abs().mean().item():.6f} | "
-                f"mean abs = "
-                f"{mean.abs().mean().item():.6f}"
-            )
+        # if debug and k in [99, 95, 90, 80, 50, 20, 0]:
+        #     print(
+        #         f"k = {k:2d} | "
+        #         f"action abs mean = "
+        #         f"{action.abs().mean().item():.6f} | "
+        #         f"pred_noise abs mean = "
+        #         f"{pred_noise.abs().mean().item():.6f} | "
+        #         f"mean abs = "
+        #         f"{mean.abs().mean().item():.6f}"
+        #     )
 
         # -----------------------------------
         # k = 0 已经是最后一步

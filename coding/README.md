@@ -9,3 +9,13 @@ solution1： 改noise_schedule v1 是线性的，A99的噪声都不算很高  -�
 
 
 对数据太敏感了.
+
+
+
+Compare with flow：
+Diffusion： 
+>TIME:  5.408592100022361
+>MAE:  0.03080573832266964
+Flow-matching:
+>TIME:  0.641774500021711
+>MAE:  0.035128375922795385
